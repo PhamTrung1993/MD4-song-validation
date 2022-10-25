@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<a href="/home">HOME</a>
+<a href="/create">CREATE</a>
+<table>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Singer</th>
+    <th>Category</th>
+    <th>Play</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr th:each="song, songStat: ${songs}">
+    <td th:text="${songStat.count}"></td>
+    <td th:text="${song.songName}"></td>
+    <td th:text="${song.singer}"></td>
+    <th:block th:each="category : ${categories}">
+      <td th:if="${category.id == song.category.id}" th:text="${category.categoryName}"></td>
+    </th:block>
+    <td>
+      <audio th:src="@{'/song/' + ${song.link}}" type="audio/mpeg" controls />
+    </td>
+    <td><a th:href="@{{id}/edit(id=${song.id})}">Update</a></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

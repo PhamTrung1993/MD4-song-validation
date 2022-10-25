@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button>
+  <a th:href="@{/home}">Home</a>
+</button>
+<hr>
+<h2>UPDATE SONG</h2>
+<hr>
+<form th:action="@{/saveEdit}" method="post" enctype="multipart/form-data" th:object="${songForm}">
+  <input type="hidden" th:field="*{id}">
+  <div>
+    <label for="name"> Name</label>
+    <input type="text" id="name" th:field="*{songName}">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{songName}"></span>
+  </div>
+  <div>
+    <label for="singer">Singer</label>
+    <input type="text" id="singer" th:field="*{singer}">
+    <span th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}"></span>
+  </div>
+  <div>
+    <label for="category">Category</label>
+    <input type="text" id="category" th:field="*{category}">
+    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+  </div>
+  <div>
+    <label for="link">File</label>
+    <input type="file" id="link" th:field="*{link}">
+    <span th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></span>
+  </div>
+  <div>
+    <button>Save</button>
+  </div>
+</form>
+</body>
+</html>
